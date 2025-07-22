@@ -5,7 +5,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
-class BaseTest {
+public class BaseTest {
     private static Playwright pw;
     private static Browser browser;
     private BrowserContext context;
