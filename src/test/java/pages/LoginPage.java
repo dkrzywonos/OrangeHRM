@@ -53,7 +53,7 @@ public class LoginPage {
 
     // Method to check if login failed by checking for an error message
     public boolean isLoginFailed() {
-        return page.locator(".oxd-text.oxd-text--p").textContent().contains("Invalid credentials");
+        return page.locator(".oxd-text.oxd-text--p").allTextContents().contains("Invalid credentials");
     }
 
 }
