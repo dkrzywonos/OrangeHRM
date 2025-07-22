@@ -7,8 +7,8 @@ public class LoginPage {
     private final Page page;
 
     // Locators
-    private final String usernameInput = "#username";
-    private final String passwordInput = "#password";
+    private final String usernameInput = "[name='username']";
+    private final String passwordInput = "[name='password']";
     private final String loginButton = "button[type='submit']";
 
     // Constructor
@@ -49,6 +49,11 @@ public class LoginPage {
     public boolean isLoginSuccessful() {
         // You can implement a check here, for example by checking the URL or the presence of a specific element on the dashboard
         return page.url().contains("dashboard");
+    }
+
+    // Method to check if login failed by checking for an error message
+    public boolean isLoginFailed() {
+        return page.locator(".oxd-text.oxd-text--p").textContent().contains("Invalid credentials");
     }
 
 }
