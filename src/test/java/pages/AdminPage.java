@@ -11,18 +11,45 @@
         private final NavbarComponent navbar;
 
         // Locators
-        // --- User Management ---
-        private final String userManagementTab = ".oxd-topbar-body-nav-tab-item:has-text('User Management')";
-        private final String usersTab = ".oxd-topbar-body-nav-tab-link:has-text('Users')";
-        // --- Job ---
-        private final String jobTab = ".oxd-topbar-body-nav-tab-item:has-text('Job')";
-        private final String jobTitlesTab = ".oxd-topbar-body-nav-tab-link:has-text('Job Titles')";
-        private final String payGradesTab = ".oxd-topbar-body-nav-tab-link:has-text('Pay Grades')";
-        private final String employmentStatusTab = ".oxd-topbar-body-nav-tab-link:has-text('Employment Status')";
-        private final String jobCategoriesTab = ".oxd-topbar-body-nav-tab-link:has-text('Job Categories')";
-        private final String workShiftsTab = ".oxd-topbar-body-nav-tab-link:has-text('Work Shifts')";
+        public enum AdminLocators {
+            // --- User Management ---
+            USER_MANAGEMENT(".oxd-topbar-body-nav-tab-item:has-text('User Management')"),
+            USERS(".oxd-topbar-body-nav-tab-link:has-text('Users')"),
+            // --- Job ---
+            JOB(".oxd-topbar-body-nav-tab-item:has-text('Job')"),
+            JOB_TITLES(".oxd-topbar-body-nav-tab-link:has-text('Job Titles')"),
+            PAY_GRADES(".oxd-topbar-body-nav-tab-link:has-text('Pay Grades')"),
+            EMPLOYMENT_STATUS(".oxd-topbar-body-nav-tab-link:has-text('Employment Status')"),
+            JOB_CATEGORIES(".oxd-topbar-body-nav-tab-link:has-text('Job Categories')"),
+            WORK_SHIFTS(".oxd-topbar-body-nav-tab-link:has-text('Work Shifts')");
 
+            private final String selector;
 
+            AdminLocators(String selector) {
+                this.selector = selector;
+            }
+
+            public String getSelector() {
+                return selector;
+            }
+
+            public enum Section {
+                USER_MANAGEMENT,
+                JOB
+            }
+
+            public Section getSection() {
+                switch (this) {
+                    case USER_MANAGEMENT, USERS:
+                        return Section.USER_MANAGEMENT;
+                    case JOB, JOB_TITLES, PAY_GRADES, EMPLOYMENT_STATUS, JOB_CATEGORIES, WORK_SHIFTS:
+                        return Section.JOB;
+                    default:
+                        throw new IllegalArgumentException("Unknown section for locator: " + this);
+                }
+            }
+
+        }
 
         // Constructor
         public AdminPage(Page page) {
@@ -36,42 +63,18 @@
             sidebar.clickLink(SidebarComponent.SidebarLocators.ADMIN_LINK);
         }
 
-        // --- User Management ---
-        public void clickUserManagementTab() {
-            page.click(userManagementTab);
+        public void clickTab(AdminLocators locator) {
+            page.click(locator.getSelector());
         }
 
-        public void clickUsersTab() {
-            page.click(usersTab);
+        public void clickTabWithParent(AdminLocators locator) {
+            // Click the parent tab first
+            switch (locator.getSection()) {
+                case USER_MANAGEMENT -> clickTab(AdminLocators.USER_MANAGEMENT);
+                case JOB -> clickTab(AdminLocators.JOB);
+            }
+            // Then click the specific tab
+            clickTab(locator);
         }
-
-        // --- Job ---
-        public void clickJobTab() {
-            page.click(jobTab);
-        }
-
-        public void clickJobTitlesTab() {
-            page.click(jobTitlesTab);
-        }
-
-        public void clickPayGradesTab() {
-            page.click(payGradesTab);
-        }
-
-        public void clickEmploymentStatusTab() {
-            page.click(employmentStatusTab);
-        }
-
-        public void clickJobCategoriesTab() {
-            page.click(jobCategoriesTab);
-        }
-
-        public void clickWorkShiftsTab() {
-            page.click(workShiftsTab);
-        }
-
-
-
-
 
     }
