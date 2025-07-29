@@ -21,7 +21,13 @@
             PAY_GRADES(".oxd-topbar-body-nav-tab-link:has-text('Pay Grades')"),
             EMPLOYMENT_STATUS(".oxd-topbar-body-nav-tab-link:has-text('Employment Status')"),
             JOB_CATEGORIES(".oxd-topbar-body-nav-tab-link:has-text('Job Categories')"),
-            WORK_SHIFTS(".oxd-topbar-body-nav-tab-link:has-text('Work Shifts')");
+            WORK_SHIFTS(".oxd-topbar-body-nav-tab-link:has-text('Work Shifts')"),
+            // --- Organization ---
+            ORGANIZATION(".oxd-topbar-body-nav-tab-item:has-text('Organization')"),
+            GENERAL_INFORMATION(".oxd-topbar-body-nav-tab-link:has-text('General Information')"),
+            LOCATIONS(".oxd-topbar-body-nav-tab-link:has-text('Locations')"),
+            STRUCTURE(".oxd-topbar-body-nav-tab-link:has-text('Structure')");
+
 
             private final String selector;
 
@@ -35,7 +41,8 @@
 
             public enum Section {
                 USER_MANAGEMENT,
-                JOB
+                JOB,
+                ORGANIZATION
             }
 
             public Section getSection() {
@@ -44,6 +51,8 @@
                         return Section.USER_MANAGEMENT;
                     case JOB, JOB_TITLES, PAY_GRADES, EMPLOYMENT_STATUS, JOB_CATEGORIES, WORK_SHIFTS:
                         return Section.JOB;
+                    case ORGANIZATION, GENERAL_INFORMATION, LOCATIONS,STRUCTURE:
+                        return Section.ORGANIZATION;
                     default:
                         throw new IllegalArgumentException("Unknown section for locator: " + this);
                 }
@@ -72,6 +81,7 @@
             switch (locator.getSection()) {
                 case USER_MANAGEMENT -> clickTab(AdminLocators.USER_MANAGEMENT);
                 case JOB -> clickTab(AdminLocators.JOB);
+                case ORGANIZATION -> clickTab(AdminLocators.ORGANIZATION);
             }
             // Then click the specific tab
             clickTab(locator);
