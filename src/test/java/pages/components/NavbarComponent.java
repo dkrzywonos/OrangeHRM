@@ -9,10 +9,7 @@ public class NavbarComponent {
     // Locators
     private final String upgradeButton = "//button[normalize-space()='Upgrade']";
     private final String profileDropdown = "//span[@class='oxd-userdropdown-tab']";
-    private final String aboutOption = "//a[normalize-space()='About']";
-    private final String supportOption = "//a[normalize-space()='Support']";
-    private final String changePasswordOption = "//a[normalize-space()='Change Password']";
-    private final String logoutOption = "//a[normalize-space()='Logout']";
+    private final String header = ".oxd-text.oxd-text--h6.oxd-topbar-header-breadcrumb-module";
 
     public enum ProfileOptions {
         ABOUT("About", "//a[normalize-space()='About']"),
@@ -58,5 +55,9 @@ public class NavbarComponent {
         }
         // Click the appropriate option based on the input
         page.click(option.getSelector());
+    }
+
+    public String getHeaderText() {
+        return page.locator(header).textContent();
     }
 }

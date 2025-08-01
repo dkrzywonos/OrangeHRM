@@ -8,18 +8,18 @@ public class SidebarComponent {
 
     // Locators
     public enum SidebarLocators {
-        ADMIN_LINK("a[href='/admin/viewAdminModule']"),
-        PIM_LINK("a[href='/pim/viewPimModule']"),
-        LEAVE_LINK("a[href='/leave/viewLeaveModule']"),
-        TIME_LINK("a[href='/time/viewTimeModule']"),
-        RECRUITMENT_LINK("a[href='/recruitment/viewRecruitmentModule']"),
-        MY_INFO_LINK("a[href='/pim/viewMyDetails']"),
-        PERFORMANCE_LINK("a[href='/performance/viewPerformanceModule']"),
-        DASHBOARD_LINK("a[href='/dashboard']"),
-        DIRECTORY_LINK("a[href='/directory/viewDirectory']"),
-        MAINTENANCE_LINK("a[href='/maintenance/viewMaintenanceModule']"),
-        CLAIM_LINK("a[href='/claim/viewClaimModule']"),
-        BUZZ_LINK("a[href='/buzz/viewBuzz']");
+        ADMIN_LINK("a[href='/web/index.php/admin/viewAdminModule']"),
+        PIM_LINK("a[href='/web/index.php/pim/viewPimModule']"),
+        LEAVE_LINK("a[href='/web/index.php/leave/viewLeaveModule']"),
+        TIME_LINK("a[href='/web/index.php/time/viewTimeModule']"),
+        RECRUITMENT_LINK("a[href='/web/index.php/recruitment/viewRecruitmentModule']"),
+        MY_INFO_LINK("a[href='/web/index.php/pim/viewMyDetails']"),
+        PERFORMANCE_LINK("a[href='/web/index.php/performance/viewPerformanceModule']"),
+        DASHBOARD_LINK("a[href='/web/index.php/dashboard/index']"),
+        DIRECTORY_LINK("a[href='/web/index.php/directory/viewDirectory']"),
+        MAINTENANCE_LINK("a[href='/web/index.php/maintenance/viewMaintenanceModule']"),
+        CLAIM_LINK("a[href='/web/index.php/claim/viewClaimModule']"),
+        BUZZ_LINK("a[href='/web/index.php/buzz/viewBuzz']");
 
 
         private final String selector;
